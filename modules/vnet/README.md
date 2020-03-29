@@ -24,9 +24,12 @@ You need to provide the required listed below parameters in the deploy.ps1 scrip
 
 ### Deployment Usage
 
-Module must be run in the complete-deploy directory. Script arguments `-a <subscriptionId> -b <resourceGroupName> -c <resourceGroupDeploymentName> -d <vnetName> -e <vnetAddressPrefix>`
+Module must be run in the complete-deploy directory. Script arguments 
+
+`-a <subscriptionId> -b <resourceGroupName> -c <resourceGroupDeploymentName> -d <vnetName> -e <vnetAddressPrefix>`
 
 example: See below on how to run the module 'resouce deployment' from powershell
+
 `..\modules\vnet\deploy.ps1 -a $subscriptionId -b $resourceGroupName -c $resourceGroupDeploymentName -d $vnetName -e $vnetAddressPrefix`
 
-### Note: All mandatory parameters must be supplied for the deployment to be successful.
+### Note: *All mandatory parameters must be supplied for the deployment to be successful.*
