@@ -1,4 +1,4 @@
-#Azure virtual network deployment
+# Azure virtual network deployment
 
 Param(
        
@@ -28,7 +28,7 @@ Param(
     [string] $vnetAddressPrefix
 )
 
-#Get the template file and save in a variable '$templateFile'
+# Get the template file and save in a variable '$templateFile'
 $TemplateFile = "..\modules\vnet\azuredeploy.json"
 if ((Test-Path $TemplateFile)) 
 { 
@@ -46,7 +46,7 @@ if ((Test-Path $TemplateFile))
 
         if ( !$vnet )
         {
-            #Deploy Vnet Resource
+            # Deploy Vnet Resource
             Write-Host -Object "Creating vnet name: $vnetName in resource group $resourceGroup" -BackgroundColor Green -ForegroundColor White
             New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup `
             -Name $resourceGroupDeploymentName `

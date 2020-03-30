@@ -1,42 +1,28 @@
 {
-    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "$schema": "https://schema.management.azure.com/schemas/2018-05-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "vnetName": {
+        "resourceGroupName": {
             "type": "string",
             "metadata": {
-                "description": "VNet name"
+                "description": "Resource Group Name"
             }
         },
-        "subnetName": {
+        "resourceGroupLocation": {
             "type": "string",
             "metadata": {
-                "description": "Address Name"
-            }
-        },
-        "subnetAddressPrefix": {
-            "type": "string",
-            "metadata": {
-                "description": "Subnet Address prefix"
-            }
-        },
-        "location": {
-            "type": "string",
-            "defaultValue": "[resourceGroup().location]",
-            "metadata": {
-                "description": "Location for all resources."
+                "description": "Resource Group Location."
             }
         }
     },
     "resources": [
         {
-            "apiVersion": "2018-04-01",
-            "type": "Microsoft.Network/virtualNetworks/subnets",
-            "name": "[concat(parameters('vnetName'), '/',parameters('subnetName'))]",
-            "location": "[parameters('location')]",
-            "properties": {
-                "addressPrefix": "[parameters('subnetAddressPrefix')]"
-            }
+            "apiVersion": "2018-07-01",
+            "type": "Microsoft.Resources/resourceGroups",
+            "name": "[parameters('resourceGroupName')]",
+            "location": "[parameters('resourceGroupLocation')]",
+            "properties": {},
+            "tags": {}
         }
     ]
 }

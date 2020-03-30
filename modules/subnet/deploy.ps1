@@ -1,4 +1,4 @@
-#Azure virtual network subnet deployment
+# Azure virtual network subnet deployment
 
 Param(
        
@@ -33,7 +33,7 @@ Param(
     [string] $subnetAddressPrefix
 )
 
-#Get the template file and save in a variable '$templateFile'
+# Get the template file and save in a variable '$templateFile'
 $TemplateFile = "..\modules\subnet\azuredeploy.json"
 if ((Test-Path $TemplateFile)) 
 { 
@@ -44,7 +44,7 @@ if ((Test-Path $TemplateFile))
             !([string]::IsNullOrEmpty($subnetName)) -and `
             !([string]::IsNullOrEmpty($subnetAddressPrefix))  )
     {
-        #Select Azure subscription to deploy resource in
+        # Select Azure subscription to deploy resource in
         Select-AzSubscription -Subscription $subscriptionId
         # Check if subnet name already exists in the vnet
         $vnet = Get-AzVirtualNetwork -ResourceGroupName $resourceGroup -Name $vnetName -ErrorAction SilentlyContinue
@@ -52,7 +52,7 @@ if ((Test-Path $TemplateFile))
         
         if ( ! $subnet )
         {
-            #Deploy subnet in an existing vnet Resource
+            # Deploy subnet in an existing vnet Resource
             Write-Host -Object "Creating subnet name: $subnetName in vnet $vnetName" -BackgroundColor Green -ForegroundColor White
             New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup `
             -Name $resourceGroupDeploymentName `
