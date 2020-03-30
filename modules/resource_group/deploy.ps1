@@ -44,7 +44,7 @@ if ((Test-Path $TemplateFile))
             if ( !$rg )
             {
                 # Deploy resource group in the subscription
-                Write-Host -Object "Creating resource group name: $resourceGroupName in subscription $($sub.Subscription.Name)" -BackgroundColor Green -ForegroundColor White
+                Write-Host -Object "Creating resource group name: $resourceGroupName in subscription '$($sub.Subscription.Name)'" -BackgroundColor Green -ForegroundColor White
                 New-AzDeployment -Name $resourceDeploymentName `
                 -TemplateFile $TemplateFile `
                 -resourceGroupName $resourceGroupName `
