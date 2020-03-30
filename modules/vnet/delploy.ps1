@@ -28,32 +28,47 @@ Param(
     [string] $vnetAddressPrefix
 )
 
-#if ()
-if (    !([string]::IsNullOrEmpty($subscriptionId)) -and `
-        !([string]::IsNullOrEmpty($resourceGroup)) -and `
-		!([string]::IsNullOrEmpty($resourceGroupDeploymentName)) -and `
-		!([string]::IsNullOrEmpty($vnetName)) -and `
-		!([string]::IsNullOrEmpty($vnetAddressPrefix))   )
-{
-    #Select Azure subscription to deploy resource in
-    Select-AzSubscription -Subscription $subscriptionId
+#Get the template file and save in a variable '$templateFile'
+$TemplateFile = "..\modules\vnet\azuredeploy.json"
+if ((Test-Path $TemplateFile)) 
+{ 
+    if (    !([string]::IsNullOrEmpty($subscriptionId)) -and `
+            !([string]::IsNullOrEmpty($resourceGroup)) -and `
+            !([string]::IsNullOrEmpty($resourceGroupDeploymentName)) -and `
+            !([string]::IsNullOrEmpty($vnetName)) -and `
+            !([string]::IsNullOrEmpty($vnetAddressPrefix))   )
+    {
+        # Select Azure subscription to deploy resource in
+        Select-AzSubscription -Subscription $subscriptionId
 
-    #Get the template file and save in a variable '$templateFile'
-    $templateFile = "..\modules\vnet\azuredeploy.json"
+        # Check is vnet already exists
+        $vnet = Get-AzVirtualNetwork -ResourceGroupName $resourceGroup -Name $vnetName -ErrorAction SilentlyContinue
 
-    #Deploy Vnet Resource
-    Write-Host -Object "Creating vnet name: $vnetName in resource group $resourceGroup" -BackgroundColor Green -ForegroundColor White
-    New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup `
-    -Name $resourceGroupDeploymentName `
-    -TemplateFile $templateFile `
-    -vnetName $vnetName `
-    -vnetAddressPrefix $vnetAddressPrefix `
-    -Mode Incremental
+        if ( !$vnet )
+        {
+            #Deploy Vnet Resource
+            Write-Host -Object "Creating vnet name: $vnetName in resource group $resourceGroup" -BackgroundColor Green -ForegroundColor White
+            New-AzResourceGroupDeployment -ResourceGroupName $resourceGroup `
+            -Name $resourceGroupDeploymentName `
+            -TemplateFile $templateFile `
+            -vnetName $vnetName `
+            -vnetAddressPrefix $vnetAddressPrefix `
+            -Mode Incremental
 
-    Write-Host -Object "Vnet name: $vnetName was successfully deployed" -BackgroundColor Green -ForegroundColor White
+            Write-Host -Object "Vnet name: $vnetName was successfully deployed" -BackgroundColor Green -ForegroundColor White
+        }
+        else
+        {
+            Write-Host -Object "Vnet name: $vnetName already exist under resource group $resourceGroup" -BackgroundColor Red -ForegroundColor White
+        }
+    }
+
+    else
+    {
+        Write-Host -Object "Either subscription ID, resource group name, deployment name, vnet name, or/and vnet address prefix is missing " -BackgroundColor Red -ForegroundColor White
+    } 
 }
-
 else
 {
-    Write-Host -Object "Either subscription ID, resource group name, deployment name, vnet name, or/and vnet address prefix is missing " -BackgroundColor Red -ForegroundColor White
+    Write-Host -Object "Template file $TemplateFile does not exist" -BackgroundColor Red -ForegroundColor White
 }
