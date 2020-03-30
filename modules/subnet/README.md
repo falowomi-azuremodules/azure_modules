@@ -19,10 +19,10 @@ You need to provide the required listed below parameters in the deploy.ps1 scrip
 |----------------|----------------|-------------|------|---------|-------|
 | -a | subscriptionId | Azure subscription Id. | string | `abcdefgh-1234-abcd-5678-abcd1234efgh` | - |
 | -b | resourceGroupName | Existing resource group for the resource deployment. | string | `my_resourceGroup` | - |
-| -c | resourceGroupDeploymentName | Azure resource group deployment name. | string | `vnetdeployment` | - |
+| -c | resourceGroupDeploymentName | Azure resource group deployment name. | string | `subnetdeployment` | - |
 | -d | vnetName | Virtual network name. | string | `Management_Network` | - |
 | -e | subnetName | Subnet Name. | string | `WebServer` | - |
-| -f | subnetAddressPrefix | Subnet address prefix | string | `10.0.0.0` | - |
+| -f | subnetAddressPrefix | Subnet address prefix | string | `10.0.0.0/24` | - |
 
 ### Deployment Usage
 
