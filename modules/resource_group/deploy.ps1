@@ -23,6 +23,10 @@ Param(
     [string] $location
 )
 
+. ..\bin\confirm_access.ps1
+
+confirm_access
+
 # Get the template file and save in a variable '$templateFile'
 $TemplateFile = "..\modules\resource_group\azuredeploy.json"
 if ((Test-Path $TemplateFile)) 
