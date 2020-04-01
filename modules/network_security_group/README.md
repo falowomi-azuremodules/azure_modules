@@ -19,7 +19,7 @@ You need to provide the required listed below parameters in the deploy.ps1 scrip
 | -a | subscriptionId | Azure subscription Id. | string | `abcdefgh-1234-abcd-5678-abcd1234efgh` | - |
 | -b | resourceGroupName | Existing resource group for the resource deployment. | string | `my_resourceGroup` | - |
 | -c | resourceGroupDeploymentName | Azure resource group deployment name. | string | `subnetdeployment` | - |
-| -d | nsgName | Network security group name. | string | `Management_Network` | - |
+| -d | nsgName | Network security group name. | string | `nsg1` | - |
 ### Deployment Usage
 
 Module must be run in the complete-deploy directory. Script arguments 
