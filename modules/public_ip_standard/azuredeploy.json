@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "publicIpName": {
+            "type": "string",
+            "metadata": {
+                "description": "Public IP address"
+            }
+        },
+        "publicIpAllocationMethod": {
+            "type": "string",
+            "defaultValue": "Static",
+            "metadata": {
+                "description": "Public IP address allocation method 'Static or Dynamic'"
+            }
+        },
+        "publicIpSku": {
+            "type": "string",
+            "defaultValue": "Standard",
+            "metadata": {
+                "description": "Public IP address Sku 'Standard or Basic'"
+            }
+        },
+        "location": {
+            "type": "string",
+            "defaultValue": "[resourceGroup().location]",
+            "metadata": {
+                "description": "Location for all resources."
+            }
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2019-04-01",
+            "type": "Microsoft.Network/publicIPAddresses",
+            "name": "[parameters('publicIpName')]",
+            "location": "[parameters('location')]",
+            "sku": {
+                "name": "[parameters('publicIpSku')]"
+            },
+            "properties": {
+                "publicIPAllocationMethod": "[parameters('publicIpAllocationMethod')]"
+            },
+            "tags": {}
+        }
+    ]
+}

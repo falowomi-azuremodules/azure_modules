@@ -13,5 +13,3 @@ Function confirm_access()
         Break
     }
 }
-
-confirm_access

@@ -69,7 +69,7 @@ if ((Test-Path $TemplateFile))
 
     else
     {
-        Write-Host -Object "Either subscription ID, resource group name, deployment name, load balancer, or/and load balancer sku prefix is missing " -BackgroundColor Red -ForegroundColor White
+        Write-Host -Object "Either subscription ID, resource group name, deployment name, load balancer, or/and load balancer sku is missing " -BackgroundColor Red -ForegroundColor White
     } 
 }
 else
