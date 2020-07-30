@@ -11,4 +11,6 @@ echo "<h2>Server Hostname: $hostname</h2>";
 ?>
 EOF
 
+rm /var/www/html/index.html
+
 service apache2 restart
