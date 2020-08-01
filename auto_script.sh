@@ -5,9 +5,9 @@ service apache2 start
 service apache2 stop
 
 
-mkdir site
-mkdir site/main
-mkdir site/main/html
+mkdir /site
+mkdir /site/main
+mkdir /site/main/html
 
 sed -i 's+DocumentRoot /var/www/html+DocumentRoot /site/main/html+g' /etc/apache2/sites-enabled/000-default.conf
 sed -i 's+<Directory /var/www>+<Directory /site/main>+g' /etc/apache2/apache2.conf
